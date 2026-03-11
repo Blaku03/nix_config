@@ -38,6 +38,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit nixConfigDir primaryUser; };
+              home-manager.backupFileExtension = "bak";
               home-manager.users.${primaryUser} = import ./hosts/${hostname}/home.nix;
             }
           ];

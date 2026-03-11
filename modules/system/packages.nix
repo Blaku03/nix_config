@@ -6,5 +6,6 @@
     curl
     wget
     nixfmt
+    eza
   ];
 }
