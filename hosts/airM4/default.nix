@@ -41,6 +41,41 @@
 
   system.primaryUser = primaryUser;
 
+  system.defaults = {
+    dock = {
+      autohide = true;
+      autohide-delay = 0.0;
+      autohide-time-modifier = 0.2;
+      show-recents = false;
+      minimize-to-application = true;
+      orientation = "right";
+      tilesize = 48;
+      magnification = true;
+      largesize = 64;
+      persistent-apps = [
+        "/Applications/Brave Browser.app"
+        "/Applications/kitty.app"
+        "/Applications/TickTick.app"
+        "/Applications/Visual Studio Code.app"
+        "/Applications/Discord.app"
+      ];
+    };
+    finder = {
+      AppleShowAllExtensions = true;
+      FXPreferredViewStyle = "clmv"; # column view
+      ShowPathbar = true;
+      ShowStatusBar = true;
+    };
+    NSGlobalDomain = {
+      AppleInterfaceStyle = "Dark";
+      KeyRepeat = 2;
+      InitialKeyRepeat = 15;
+      ApplePressAndHoldEnabled = false;
+    };
+    screensaver.askForPasswordDelay = 0;
+    trackpad.Clicking = true; # tap to click
+  };
+
   # Add fish to /etc/shells so it can be set as the login shell.
   programs.fish.enable = true;
 

@@ -9,6 +9,8 @@
       "steam"
       "visual-studio-code"
       "yaak"
+      "brave-browser"
+      "ticktick"
     ];
     onActivation.cleanup = "zap";
   };
