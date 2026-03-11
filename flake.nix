@@ -8,6 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -16,71 +20,30 @@
       nix-darwin,
       nixpkgs,
       nix-homebrew,
+      home-manager,
     }:
     let
       nixConfigDir = "$HOME/.config/nix";
       primaryUser = "bartekbrzyski";
 
-      configuration =
-        { pkgs, ... }:
-        {
-          environment.systemPackages = with pkgs; [
-            neovim
-            git
-            curl
-            wget
-            nixfmt
+      mkSystem =
+        hostname:
+        nix-darwin.lib.darwinSystem {
+          specialArgs = { inherit self nixConfigDir primaryUser; };
+          modules = [
+            ./hosts/${hostname}/default.nix
+            nix-homebrew.darwinModules.nix-homebrew
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit nixConfigDir primaryUser; };
+              home-manager.users.${primaryUser} = import ./hosts/${hostname}/home.nix;
+            }
           ];
-
-          nix-homebrew = {
-            enable = true;
-            user = primaryUser;
-          };
-
-          homebrew = {
-            enable = true;
-            casks = [
-              "steam"
-            ];
-            onActivation.cleanup = "zap";
-          };
-
-          # Necessary for using flakes on this system.
-          nix.settings.experimental-features = "nix-command flakes";
-
-          # Set Git commit hash for darwin-version.
-          system.configurationRevision = self.rev or self.dirtyRev or null;
-
-          # Used for backwards compatibility, please read the changelog before changing.
-          # $ darwin-rebuild changelog
-          system.stateVersion = 6;
-
-          # The platform the configuration will be used on.
-          nixpkgs.hostPlatform = "aarch64-darwin";
-
-          # Shell aliases for darwin-rebuild.
-          # nrs = nix rebuild switch
-          environment.shellAliases = {
-            nrs = "sudo darwin-rebuild switch --flake ${nixConfigDir}#$(hostname -s)";
-            nrup = "nix flake update ${nixConfigDir}";
-            nrb = "sudo darwin-rebuild --rollback";
-            nrgc = "sudo nix-collect-garbage --delete-older-than 30d";
-          };
-
-          system.primaryUser = primaryUser;
         };
 
       hostnames = [ "airM4" ];
-
-      mkSystem =
-        _:
-        nix-darwin.lib.darwinSystem {
-          modules = [
-            configuration
-            nix-homebrew.darwinModules.nix-homebrew
-          ];
-        };
-
     in
     {
       darwinConfigurations = nixpkgs.lib.genAttrs hostnames mkSystem;
