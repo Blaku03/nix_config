@@ -28,8 +28,9 @@
     ];
   };
 
+  home.packages = with pkgs; [ eza ];
+
   home.sessionVariables = {
-    EDITOR = "nvim";
     VISUAL = "nvim";
   };
 }

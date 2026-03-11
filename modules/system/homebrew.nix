@@ -5,6 +5,7 @@
     casks = [
       "discord"
       "kitty"
+      "rectangle"
       "signal"
       "steam"
       "visual-studio-code"
