@@ -2,6 +2,7 @@
 {
   programs.kitty = {
     enable = true;
+    package = pkgs.emptyDirectory;
     font = {
       name = "FiraCode Nerd Font";
       size = 16;
