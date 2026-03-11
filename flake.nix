@@ -7,6 +7,7 @@
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
   };
 
   outputs =
@@ -14,6 +15,7 @@
       self,
       nix-darwin,
       nixpkgs,
+      nix-homebrew,
     }:
     let
       nixConfigDir = "$HOME/.config/nix";
@@ -29,6 +31,11 @@
             wget
             nixfmt
           ];
+
+          nix-homebrew = {
+            enable = true;
+            user = primaryUser;
+          };
 
           homebrew = {
             enable = true;
@@ -61,17 +68,19 @@
           };
 
           system.primaryUser = primaryUser;
-
-          programs.zsh.enable = true;
         };
+
+      hostnames = [ "airM4" ];
 
       mkSystem =
         _:
         nix-darwin.lib.darwinSystem {
-          modules = [ configuration ];
+          modules = [
+            configuration
+            nix-homebrew.darwinModules.nix-homebrew
+          ];
         };
 
-      hostnames = [ "airM4" ];
     in
     {
       darwinConfigurations = nixpkgs.lib.genAttrs hostnames mkSystem;
