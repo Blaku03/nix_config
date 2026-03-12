@@ -5,6 +5,10 @@
   primaryUser,
   ...
 }:
+let
+  userHome = "/Users/${primaryUser}";
+  screenshotsDir = "${userHome}/Documents/Screenshots";
+in
 {
   imports = [
     ../../modules/system/packages.nix
@@ -61,7 +65,10 @@
     };
     finder = {
       AppleShowAllExtensions = true;
+      AppleShowAllFiles = true;
       FXPreferredViewStyle = "clmv"; # column view
+      FXRemoveOldTrashItems = true;
+      NewWindowTarget = "Documents";
       ShowPathbar = true;
       ShowStatusBar = true;
     };
@@ -74,7 +81,14 @@
     screensaver.askForPasswordDelay = 0;
     trackpad.Clicking = true; # tap to click
     controlcenter.BatteryShowPercentage = true;
+    screencapture.location = screenshotsDir;
   };
+
+  # Create the Screenshots directory and set ownership to the primary user in order to be able so save screenshots.
+  system.activationScripts.postActivation.text = ''
+    mkdir -p "${screenshotsDir}"
+    chown "${primaryUser}" "${screenshotsDir}"
+  '';
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
