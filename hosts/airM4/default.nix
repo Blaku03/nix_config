@@ -14,7 +14,6 @@
   nix-homebrew = {
     enable = true;
     user = primaryUser;
-    autoMigrate = true;
   };
 
   # Necessary for using flakes on this system.
@@ -33,9 +32,9 @@
   # Shell aliases for darwin-rebuild.
   # nrs = nix rebuild switch
   environment.shellAliases = {
-    nrs = "sudo darwin-rebuild switch --flake ${nixConfigDir}#$(hostname -s)";
+    nrs = "nh darwin switch ${nixConfigDir}#$(hostname -s)";
     nrup = "nix flake update --flake ${nixConfigDir}";
-    nrb = "sudo darwin-rebuild --rollback";
+    nrb = "nh darwin rollback";
     nrgc = "sudo nix-collect-garbage --delete-older-than 30d";
   };
 
@@ -74,7 +73,10 @@
     };
     screensaver.askForPasswordDelay = 0;
     trackpad.Clicking = true; # tap to click
+    controlcenter.BatteryShowPercentage = true;
   };
+
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   # Add fish to /etc/shells so it can be set as the login shell.
   programs.fish.enable = true;

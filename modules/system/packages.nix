@@ -4,5 +4,6 @@
     curl
     wget
     nixfmt
+    nh
   ];
 }
