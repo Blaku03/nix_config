@@ -16,6 +16,13 @@
       tab_powerline_style = "slanted";
       confirm_os_window_close = 0;
     };
+    keybindings = {
+      "super+1" = "goto_tab 1";
+      "super+2" = "goto_tab 2";
+      "super+3" = "goto_tab 3";
+      "super+4" = "goto_tab 4";
+      "super+5" = "goto_tab 5";
+    };
     # current-theme.conf is written by kitty's theme kitten: `kitten themes`
     extraConfig = "include current-theme.conf";
   };
