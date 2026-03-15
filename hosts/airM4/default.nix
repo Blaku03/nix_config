@@ -38,7 +38,7 @@ in
   environment.shellAliases = {
     nrs = "nh darwin switch ${nixConfigDir}#$(hostname -s)";
     nrup = "nix flake update --flake ${nixConfigDir}";
-    nrb = "nh darwin rollback";
+    nrb = "sudo darwin-rebuild --rollback";
     nrgc = "sudo nix-collect-garbage --delete-older-than 30d";
   };
 
