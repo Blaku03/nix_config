@@ -7,6 +7,13 @@
 
     functions = {
       back.body = "nohup $argv >/dev/null 2>&1 &";
+      nix.body = ''
+        if test "$argv[1]" = "develop"
+          command nix develop -c (status fish-path) $argv[2..]
+        else
+          command nix $argv
+        end
+      '';
     };
 
     shellAbbrs = {
