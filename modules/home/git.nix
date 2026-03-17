@@ -6,5 +6,6 @@
       name = "Blaku03";
       email = "the.bainow03@gmail.com";
     };
+    settings.push.autoSetupRemote = true;
   };
 }

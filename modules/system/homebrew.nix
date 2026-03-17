@@ -13,6 +13,10 @@
       "brave-browser"
       "ticktick"
     ];
+    masApps = {
+      Xcode = 497799835;
+    };
     onActivation.cleanup = "zap";
+    onActivation.extraFlags = [ "--verbose" ];
   };
 }
