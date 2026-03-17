@@ -4,7 +4,7 @@
     enable = true;
     package = pkgs.emptyDirectory;
     font = {
-      name = "FiraCode Nerd Font";
+      name = "FiraCode Nerd Font Mono";
       size = 16;
     };
     settings = {
@@ -23,8 +23,8 @@
       "super+4" = "goto_tab 4";
       "super+5" = "goto_tab 5";
     };
-    # current-theme.conf is written by kitty's theme kitten: `kitten themes`
-    extraConfig = "include current-theme.conf";
+    # Keep config self-contained; add theme colors directly here if needed.
+    extraConfig = "";
   };
 
   xdg.configFile."assets/background_img.jpg".source = ../../assets/background_img.jpg;
