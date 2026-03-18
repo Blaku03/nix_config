@@ -23,6 +23,19 @@ in
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
 
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 30d";
+    interval = {
+      Weekday = 0;
+      Hour = 2;
+      Minute = 0;
+    }; # Weekly at 2 AM
+  };
+
+  # Deduplicates store paths via hard-linking
+  nix.optimise.automatic = true;
+
   # Set Git commit hash for darwin-version.
   system.configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -39,7 +52,6 @@ in
     nrs = "nh darwin switch ${nixConfigDir}#$(hostname -s)";
     nrup = "nix flake update --flake ${nixConfigDir}";
     nrb = "sudo darwin-rebuild --rollback";
-    nrgc = "sudo nix-collect-garbage --delete-older-than 30d";
   };
 
   system.primaryUser = primaryUser;
