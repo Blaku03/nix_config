@@ -21,6 +21,7 @@
       ll = "eza -l";
       la = "eza -la";
       lt = "eza --tree";
+      nfi = "nix flake init -t ~/.config/nix#default";
     };
 
     plugins = [

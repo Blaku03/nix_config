@@ -47,6 +47,13 @@
       hostnames = [ "airM4" ];
     in
     {
+      templates = {
+        default = {
+          path = ./templates/default;
+          description = "Basic flake-parts template";
+        };
+      };
+
       darwinConfigurations = nixpkgs.lib.genAttrs hostnames mkSystem;
 
       formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixfmt;
