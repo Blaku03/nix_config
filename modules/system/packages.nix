@@ -7,4 +7,6 @@
     nh
     fastfetch
   ];
+
+  nix.package = pkgs.lixPackageSets.stable.lix;
 }
