@@ -15,6 +15,7 @@
       tab_bar_style = "powerline";
       tab_powerline_style = "slanted";
       confirm_os_window_close = 0;
+      window_padding_width = 30;
     };
     keybindings = {
       "super+1" = "goto_tab 1";

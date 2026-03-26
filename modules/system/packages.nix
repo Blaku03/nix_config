@@ -5,5 +5,6 @@
     wget
     nixfmt
     nh
+    fastfetch
   ];
 }

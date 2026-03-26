@@ -1,0 +1,16 @@
+[project]
+name = "Default Python"
+version = "0.1.0"
+description = "Python uv + flake.nix"
+authors = []
+requires-python = ">=3.12"
+dependencies = [
+    "jupyterlab",
+    "pandas",
+    "numpy",
+]
+
+[tool.uv]
+# Tells uv this is an environment for scripts/notebooks, not a publishable package
+# This prevents it from looking for a src/ directory
+package = false

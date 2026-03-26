@@ -1,4 +1,5 @@
 # nix_config
+
 Change name of Macbook ex. airM4
 
 ```
@@ -14,11 +15,13 @@ xcode-select --install
 ```
 
 Install lix:
+
 ```
 curl -sSf -L https://install.lix.systems/lix | sh -s -- install
 ```
 
 Install nix-darwin
+
 ```
 nix run nix-darwin --extra-expermiental-features "nix-command flakes" -- switch --flake ~/.config/nix#airM4
 ```

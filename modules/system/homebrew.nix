@@ -12,6 +12,8 @@
       "yaak"
       "brave-browser"
       "ticktick"
+      "antigravity"
+      "firefox"
     ];
     masApps = {
       Xcode = 497799835;
