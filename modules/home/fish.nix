@@ -3,7 +3,9 @@
   programs.fish = {
     enable = true;
 
-    interactiveShellInit = "";
+    interactiveShellInit = ''
+      set -g fish_color_autosuggestion 555
+    '';
 
     functions = {
       back.body = "nohup $argv >/dev/null 2>&1 &";
