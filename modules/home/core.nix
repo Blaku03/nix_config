@@ -17,13 +17,10 @@
         };
       };
 
-      # We no longer explicitly import other home modules,
-      # as everything using `flake.modules.home.base` gets merged automatically.
-      # Wait, actually we don't need imports here if they are all just `flake.modules.home.base`
-      # in the other files.
-
-      home.username = cfg.user.name;
-      home.homeDirectory = lib.mkForce "/Users/${cfg.user.name}";
-      home.stateVersion = "25.11";
+      config = {
+        home.username = cfg.user.name;
+        home.homeDirectory = lib.mkForce "/Users/${cfg.user.name}";
+        home.stateVersion = "25.11";
+      };
     };
 }
