@@ -50,6 +50,9 @@
         # $ darwin-rebuild changelog
         system.stateVersion = 6;
 
+        # Set primary user for nix-darwin user-level defaults
+        system.primaryUser = cfg.user.name;
+
         # The platform the configuration will be used on.
         nixpkgs.hostPlatform = cfg.hostPlatform;
 
