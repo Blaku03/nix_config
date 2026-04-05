@@ -1,5 +1,5 @@
 {
-  flake.darwinModules.home-manager =
+  flake.modules.darwin.base =
     { self, inputs, config, ... }:
     {
       home-manager.useGlobalPkgs = true;
@@ -8,7 +8,7 @@
       home-manager.backupFileExtension = "bak";
       home-manager.users.${config.my.user.name} = {
         imports = [
-          self.homeModules.core
+          self.modules.home.base
         ];
 
         my.user.name = config.my.user.name;

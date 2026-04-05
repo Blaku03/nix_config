@@ -1,5 +1,5 @@
 {
-  flake.darwinModules.macos =
+  flake.modules.darwin.base =
     { config, ... }:
     let
       cfg = config.my;
@@ -31,7 +31,7 @@
           AppleShowAllFiles = true;
           FXPreferredViewStyle = "clmv"; # column view
           FXRemoveOldTrashItems = true;
-          NewWindowTarget = "Documents";
+          NewWindowTarget = "PfDo";
           ShowPathbar = true;
           ShowStatusBar = true;
         };
@@ -50,7 +50,7 @@
       # Create the Screenshots directory and set ownership to the primary user in order to be able so save screenshots.
       system.activationScripts.postActivation.text = ''
         mkdir -p "${screenshotsDir}"
-        chown "${cfg.user.name}" "${screenshotsDir}"
+        chown "${cfg.user.name}:staff" "${screenshotsDir}"
       '';
 
       security.pam.services.sudo_local.touchIdAuth = true;

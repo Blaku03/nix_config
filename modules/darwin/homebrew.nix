@@ -1,5 +1,5 @@
 {
-  flake.darwinModules.homebrew =
+  flake.modules.darwin.base =
     { config, ... }:
     {
       nix-homebrew = {

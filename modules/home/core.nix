@@ -1,6 +1,6 @@
 { self, ... }:
 {
-  flake.homeModules.core =
+  flake.modules.home.base =
     { lib, config, ... }:
     let
       cfg = config.my;
@@ -17,14 +17,10 @@
         };
       };
 
-      imports = [
-        self.homeModules.git
-        self.homeModules.kitty
-        self.homeModules.neovim
-        self.homeModules.ssh
-        self.homeModules.fish
-        self.homeModules.starship
-      ];
+      # We no longer explicitly import other home modules,
+      # as everything using `flake.modules.home.base` gets merged automatically.
+      # Wait, actually we don't need imports here if they are all just `flake.modules.home.base`
+      # in the other files.
 
       home.username = cfg.user.name;
       home.homeDirectory = lib.mkForce "/Users/${cfg.user.name}";

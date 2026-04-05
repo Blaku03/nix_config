@@ -1,5 +1,5 @@
 {
-  flake.darwinModules.core =
+  flake.modules.darwin.base =
     {
       self,
       lib,
@@ -18,6 +18,11 @@
         nixConfigDir = lib.mkOption {
           type = lib.types.str;
           description = "Nix configuration directory";
+        };
+        hostPlatform = lib.mkOption {
+          type = lib.types.str;
+          default = "aarch64-darwin";
+          description = "Host platform (e.g. aarch64-darwin or x86_64-darwin)";
         };
       };
 
@@ -46,14 +51,14 @@
         system.stateVersion = 6;
 
         # The platform the configuration will be used on.
-        nixpkgs.hostPlatform = "aarch64-darwin";
+        nixpkgs.hostPlatform = cfg.hostPlatform;
 
         # Shell aliases for darwin-rebuild.
         # nrs = nix rebuild switch
         environment.shellAliases = {
           nrs = "nh darwin switch ${cfg.nixConfigDir}#$(hostname -s)";
           nrup = "nix flake update --flake ${cfg.nixConfigDir}";
-          nrb = "sudo darwin-rebuild --rollback";
+          nrb = "sudo darwin-rebuild switch --rollback";
         };
       };
     };

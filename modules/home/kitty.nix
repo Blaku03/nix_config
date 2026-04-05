@@ -1,5 +1,5 @@
 {
-  flake.homeModules.kitty =
+  flake.modules.home.base =
     { pkgs, ... }:
     {
       programs.kitty = {

@@ -1,13 +1,11 @@
 { lib, ... }:
 {
-  options.flake.darwinModules = lib.mkOption {
-    type = lib.types.lazyAttrsOf lib.types.deferredModule;
+  options.flake.modules = lib.mkOption {
+    type = lib.types.lazyAttrsOf (lib.types.lazyAttrsOf lib.types.deferredModule);
     default = { };
-    description = "nix-darwin modules";
+    description = "Flake modules";
   };
-  options.flake.homeModules = lib.mkOption {
-    type = lib.types.lazyAttrsOf lib.types.deferredModule;
-    default = { };
-    description = "home-manager modules";
-  };
+
+  # Keep old options just in case, but they are no longer strictly needed if we migrate everything.
+  # Actually, it's safer to just replace them entirely to enforce the new structure.
 }

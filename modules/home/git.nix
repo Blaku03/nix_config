@@ -1,5 +1,5 @@
 {
-  flake.homeModules.git = {
+  flake.modules.home.base = {
     programs.git = {
       enable = true;
       settings.user = {

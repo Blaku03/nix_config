@@ -1,5 +1,5 @@
 {
-  flake.darwinModules.packages =
+  flake.modules.darwin.base =
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [

@@ -1,5 +1,5 @@
 {
-  flake.homeModules.fish =
+  flake.modules.home.base =
     { pkgs, ... }:
     {
       programs.fish = {
