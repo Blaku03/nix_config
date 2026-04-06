@@ -1,11 +1,12 @@
-{ ... }:
 {
-  programs.git = {
-    enable = true;
-    settings.user = {
-      name = "Blaku03";
-      email = "the.bainow03@gmail.com";
+  flake.modules.homeManager.git = {
+    programs.git = {
+      enable = true;
+      settings.user = {
+        name = "Blaku03";
+        email = "the.bainow03@gmail.com";
+      };
+      settings.push.autoSetupRemote = true;
     };
-    settings.push.autoSetupRemote = true;
   };
 }
