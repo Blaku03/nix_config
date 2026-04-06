@@ -9,13 +9,13 @@ let
     name = mkOption {
       type = types.str;
       example = "nixos";
-      description = "Host name";
+      description = "Host (machine) name";
     };
 
     user.name = mkOption {
       type = types.str;
       example = "username";
-      default = "matthias";
+      default = "bartekbrzyski";
       description = "Host username";
     };
 
