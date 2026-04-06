@@ -1,6 +1,6 @@
 { self, ... }:
 {
-  flake.modules.home.base =
+  flake.modules.homeManager.base =
     { lib, config, ... }:
     let
       cfg = config.my;

@@ -31,7 +31,7 @@
           AppleShowAllFiles = true;
           FXPreferredViewStyle = "clmv"; # column view
           FXRemoveOldTrashItems = true;
-          NewWindowTarget = "PfDo";
+          NewWindowTarget = "Documents";
           ShowPathbar = true;
           ShowStatusBar = true;
         };

@@ -1,5 +1,5 @@
 {
-  flake.modules.home.base = {
+  flake.modules.homeManager.neovim = {
     programs.neovim = {
       enable = true;
       defaultEditor = true;
