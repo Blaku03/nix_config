@@ -10,7 +10,6 @@
           size = 16;
         };
         settings = {
-          shell = "${pkgs.fish}/bin/fish";
           background_image = "~/.config/assets/background_img.jpg";
           background_image_layout = "scaled";
           background_tint = "0.95";
@@ -27,7 +26,9 @@
           "super+5" = "goto_tab 5";
         };
         # Keep config self-contained; add theme colors directly here if needed.
-        extraConfig = "";
+        extraConfig = ''
+          shell ${pkgs.fish}/bin/fish
+        '';
       };
 
       xdg.configFile."assets/background_img.jpg".source = ../../assets/background_img.jpg;

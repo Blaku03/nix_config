@@ -27,6 +27,7 @@
           "ticktick"
           "antigravity"
           "firefox"
+          "tailscale-app"
         ];
         masApps = {
           Xcode = 497799835;
