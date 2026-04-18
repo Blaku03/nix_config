@@ -7,7 +7,7 @@
     }:
     let
       primaryUser = config.host.user.name;
-      screenshotsDir = "/Users/${primaryUser}/Pictures/Screenshots";
+      screenshotsDir = "/Users/${primaryUser}/Documents/Screenshots";
     in
     {
       system.defaults = {

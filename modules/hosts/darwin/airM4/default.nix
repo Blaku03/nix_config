@@ -36,6 +36,7 @@ in
         neovim
         ssh
         starship
+        claudeCode
       ];
     };
   };
