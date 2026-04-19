@@ -37,6 +37,7 @@ in
         ssh
         starship
         claudeCode
+        claudeConfig
       ];
     };
   };

@@ -15,6 +15,7 @@
 
       homebrew = {
         enable = true;
+        taps = [ "steipete/tap" ];
         casks = [
           "discord"
           "kitty"
@@ -28,6 +29,7 @@
           "antigravity"
           "firefox"
           "tailscale-app"
+          "steipete/tap/codexbar"
         ];
         masApps = {
           Xcode = 497799835;
