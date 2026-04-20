@@ -55,6 +55,8 @@
           la = "eza -la";
           lt = "eza --tree";
           nfi = "nix flake init -t ~/.config/nix#default";
+          cs = "claude --model claude-sonnet-4-6";
+          co = "claude --model claude-opus-4-6";
         };
 
         plugins = [
@@ -73,6 +75,8 @@
 
       home.sessionVariables = {
         VISUAL = "nvim";
+        ANTHROPIC_DEFAULT_SONNET_MODEL = "claude-sonnet-4-6";
+        ANTHROPIC_DEFAULT_OPUS_MODEL = "claude-opus-4-6";
       };
     };
 }
