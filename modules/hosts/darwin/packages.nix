@@ -6,6 +6,7 @@
         curl
         wget
         nixfmt
+        nixd
         nh
         fastfetch
         awscli2
