@@ -1,5 +1,5 @@
 [project]
-name = "Default Python"
+name = "Default_Python"
 version = "0.1.0"
 description = "Python uv + flake.nix"
 authors = []

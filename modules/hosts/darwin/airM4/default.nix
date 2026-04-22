@@ -38,6 +38,7 @@ in
         starship
         claudeCode
         claudeConfig
+        aerospace
       ];
     };
   };

@@ -9,6 +9,7 @@
         force = true;
         text = builtins.toJSON {
           model = "claude-sonnet-4-6";
+          skipDangerousModePermissionPrompt = true;
           cleanupConfirmation = false;
           permissions = {
             allow = [
@@ -104,9 +105,63 @@
 
           Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
 
+          ## 5. Destructive Operations
+
+          Even without permission prompts, always confirm with the user before running irreversible shell operations: `rm`, `git reset --hard`, `git push --force`, database drops, overwriting uncommitted changes, etc.
+
+          ## 6. Environment
+
+          - This machine uses **nix-darwin**. Never install tools via `brew install` or suggest it.
+          - If a tool is missing, suggest adding it to the nix configuration declaratively.
+          - Projects are run inside a nix dev shell. When something is missing (a tool, a package, a dependency), first read `flake.nix` to understand how the project manages its environment, then suggest the appropriate change. For example: if flake uses uv + pyproject.toml for Python, add to `pyproject.toml`; if it manages packages directly in nix, add to `flake.nix`. Never install anything directly (no `pip install`, `cargo install`, `npm install -g`, etc.).
+
+        '';
+      };
+
+      home.file.".claude/skills/handoff/SKILL.md" = {
+        text = ''
+          ---
+          name: handoff
+          description: Write or update a handoff document so the next agent with fresh context can continue this work.
           ---
 
-          **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+          Write or update a handoff document so the next agent with fresh context can continue this work.
+
+          Steps:
+          1. Check if HANDOFF.md already exists in the project
+          2. If it exists, read it first to understand prior context before updating
+          3. Create or update the document with:
+             - **Goal**: What we're trying to accomplish
+             - **Current Progress**: What's been done so far — summarize older history heavily, focus on immediate context
+             - **What Worked**: Approaches that succeeded
+             - **What Didn't Work**: Approaches that were wrong or ineffective (so they're not repeated)
+             - **Blockers**: Things blocked by external factors (missing API access, waiting on someone, etc.)
+             - **Relevant Files**: Exact file paths that were recently edited or are needed for next steps
+             - **Next Steps**: Clear action items for continuing
+
+          Keep the document concise. If it already exists, compress older progress into a single summary line — don't let it grow unbounded.
+
+          Save as HANDOFF.md in the project root and tell the user the file path so they can start a fresh conversation with just that path.
+        '';
+      };
+
+      home.file.".claude/skills/from-handoff/SKILL.md" = {
+        text = ''
+          ---
+          name: from-handoff
+          description: Resume work from a HANDOFF.md file at the start of a new session.
+          ---
+
+          Resume work from a HANDOFF.md file.
+
+          Steps:
+          1. Find HANDOFF.md in the current project root
+          2. If not found, tell the user and stop
+          3. Read it carefully: goal, progress, what worked, what didn't, blockers, relevant files, next steps
+          4. Verify current state: briefly read the key files listed under Relevant Files to confirm they match what HANDOFF.md describes
+          5. Tell the user in 2-3 sentences where things stand and what you'll work on next
+          6. If the first next step involves irreversible operations (file deletion, git push, database changes, etc.), ask the user to confirm before proceeding
+          7. Otherwise proceed with the first next step
         '';
       };
 
@@ -177,7 +232,7 @@
           repo_root=$(cd "''${current_dir:-.}" 2>/dev/null && git rev-parse --show-toplevel 2>/dev/null || echo "''${current_dir:-.}")
           dir_display=$(basename "$repo_root")
 
-          printf "🤖 %s | 🧠 %s | ⏱️  %s\n📁 %s | 🌿 %s\n" "$model" "$usage_str" "$rate_limit_str" "$dir_display" "$git_str"
+          printf "  %s | 🧠 %s | ⏱️  %s\n📁 %s | 🌿 %s\n" "$model" "$usage_str" "$rate_limit_str" "$dir_display" "$git_str"
         '';
       };
     };

@@ -55,8 +55,8 @@
           la = "eza -la";
           lt = "eza --tree";
           nfi = "nix flake init -t ~/.config/nix#default";
-          cs = "claude --model claude-sonnet-4-6";
-          co = "claude --model claude-opus-4-6";
+          cs = "claude --model claude-sonnet-4-6 --dangerously-skip-permissions";
+          co = "claude --model claude-opus-4-6 --dangerously-skip-permissions";
         };
 
         plugins = [
