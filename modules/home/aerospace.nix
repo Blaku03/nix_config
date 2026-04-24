@@ -57,13 +57,15 @@
             # Nazwane workspacey
             "alt-t" = "workspace terminal";
             "alt-b" = "workspace browser";
+            "alt-d" = "workspace discord";
 
             "alt-shift-t" = "move-node-to-workspace terminal";
             "alt-shift-b" = "move-node-to-workspace browser";
+            "alt-shift-d" = "move-node-to-workspace discord";
 
             # Uklad
-            "alt-slash" = "layout tiles horizontal vertical";
-            "alt-comma" = "layout accordion horizontal vertical";
+            "alt-v" = "layout tiles horizontal vertical";
+            "alt-g" = "layout accordion horizontal vertical";
 
             # Pelny ekran
             "alt-f" = "fullscreen";

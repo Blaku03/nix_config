@@ -10,6 +10,7 @@
         nh
         fastfetch
         awscli2
+        just-lsp
       ];
 
       nix.package = pkgs.lixPackageSets.stable.lix;
