@@ -9,6 +9,7 @@
         force = true;
         text = builtins.toJSON {
           model = "claude-sonnet-4-6";
+          effortLevel = "medium";
           skipDangerousModePermissionPrompt = true;
           cleanupConfirmation = false;
           permissions = {
@@ -31,6 +32,18 @@
               "Bash(git diff *)"
               "Bash(git branch *)"
             ];
+          };
+          remoteControlAtStartup = true;
+          extraKnownMarketplaces = {
+            "anthropic-agent-skills" = {
+              source = {
+                source = "github";
+                repo = "anthropics/skills";
+              };
+            };
+          };
+          enabledPlugins = {
+            "example-skills@anthropic-agent-skills" = true;
           };
           statusLine = {
             type = "command";

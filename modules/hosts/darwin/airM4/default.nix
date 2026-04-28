@@ -28,6 +28,34 @@ in
   flake.modules.darwin.airM4 = {
     inherit host;
 
+    # # Linux builder for building x86_64/aarch64-linux packages on macOS.
+    # nix.linux-builder = {
+    #   enable = true;
+    #   ephemeral = true;
+
+    #   # How many different packages can build at the same time.
+    #   maxJobs = 2;
+
+    #   supportedFeatures = [
+    #     "kvm"
+    #     "benchmark"
+    #     "big-parallel"
+    #   ];
+
+    #   config = {
+    #     virtualisation = {
+    #       darwin-builder = {
+    #         diskSize = 40 * 1024;
+    #         memorySize = 10 * 1024;
+    #       };
+    #       cores = 8;
+    #     };
+
+    #     # Use all virtual cores for a single build inside the Linux VM.
+    #     nix.settings.cores = 0;
+    #   };
+    # };
+
     home-manager.users.${host.user.name} = {
       imports = with config.flake.modules.homeManager; [
         fish

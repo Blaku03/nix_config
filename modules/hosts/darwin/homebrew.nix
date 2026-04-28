@@ -29,6 +29,12 @@
           "firefox"
           "tailscale-app"
           "steipete/tap/codexbar"
+          "qgis"
+          "flutter"
+          "claude"
+          "stats"
+          "termius"
+          "wispr-flow"
         ];
         masApps = {
           Xcode = 497799835;
